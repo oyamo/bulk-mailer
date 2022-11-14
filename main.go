@@ -1,11 +1,11 @@
 package main
 
 import (
-	"bufio"
 	"encoding/csv"
 	"flag"
 	"fmt"
 	"github.com/joho/godotenv"
+	"io"
 	"os"
 	"strings"
 	"time"
@@ -57,11 +57,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	scanner := bufio.NewScanner(html)
-	for scanner.Scan() {
-		htmlTemplate += scanner.Text()
+	b, err := io.ReadAll(html)
+	if err != nil {
+		_, _ = fmt.Fprintf(os.Stderr, "Error: %v (html file) \n", err)
+		os.Exit(1)
 	}
 
+	htmlTemplate = string(b)
 	fmt.Println(htmlTemplate)
 
 	// Read environment file
