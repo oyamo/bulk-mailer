@@ -59,7 +59,7 @@ func main() {
 
 	scanner := bufio.NewScanner(html)
 	for scanner.Scan() {
-		htmlTemplate = strings.Join([]string{htmlTemplate, scanner.Text()}, "")
+		htmlTemplate += scanner.Text()
 	}
 
 	fmt.Println(htmlTemplate)
