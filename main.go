@@ -110,9 +110,6 @@ func main() {
 
 	// Create recipients
 	for index, _ := range emails[1:] {
-		if index == 0 {
-			continue
-		}
 		recipients = append(recipients, Recipient{
 			Name:  emails[index][nameColumn],
 			Email: emails[index][emailColumn],
@@ -125,7 +122,7 @@ func main() {
 	// Send emails
 	err = mailer.SendMail(recipients, subject, htmlTemplate)
 	if err != nil {
-		_, _ = fmt.Fprintf(os.Stderr, "Error: %v (email file) \n", err)
+		_, _ = fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 		os.Exit(1)
 	}
 
