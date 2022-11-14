@@ -94,12 +94,12 @@ func main() {
 	}
 
 	if emailColumn == -1 {
-		_, _ = fmt.Fprintf(os.Stderr, "error: (email file) Must contain a column with the word 'email' in it")
+		_, _ = fmt.Fprintf(os.Stderr, "error: (email file) Must contain a column with the word 'email' in it\n")
 		os.Exit(1)
 	}
 
 	if nameColumn == -1 {
-		_, _ = fmt.Fprintf(os.Stderr, "Error: (email file) Must contain a column with the word 'name' in it")
+		_, _ = fmt.Fprintf(os.Stderr, "Error: (email file) Must contain a column with the word 'name' in it\n")
 		fmt.Println(emails)
 		os.Exit(1)
 	}
