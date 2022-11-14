@@ -76,11 +76,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	if len(emails) != 2 {
-		_, _ = fmt.Fprintf(os.Stderr, "Error: (email file) Must contain 2 columns \n")
-		os.Exit(1)
-	}
-
 	if len(emails[0]) != 2 {
 		_, _ = fmt.Fprintf(os.Stderr, "Error: (email file) Must contain 2 columns \n")
 		os.Exit(1)
