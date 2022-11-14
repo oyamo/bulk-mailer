@@ -111,8 +111,8 @@ func main() {
 	// Create recipients
 	for index, _ := range emails[1:] {
 		recipients = append(recipients, Recipient{
-			Name:  emails[index][nameColumn],
-			Email: emails[index][emailColumn],
+			Name:  emails[index+1][nameColumn],
+			Email: emails[index+1][emailColumn],
 		})
 	}
 
