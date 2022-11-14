@@ -64,7 +64,6 @@ func main() {
 	}
 
 	htmlTemplate = string(b)
-	fmt.Println(htmlTemplate)
 
 	// Read environment file
 	err = godotenv.Load(envFile)
