@@ -117,6 +117,8 @@ func main() {
 		})
 	}
 
+	fmt.Println("[bulk-mailer@v1.0.0] https://github.com/oyamo/bulk-mailer")
+
 	// Create mailer
 	mailer := NewMailer(os.Getenv("EMAIL"), os.Getenv("PASSWORD"), "smtp.gmail.com")
 
@@ -129,5 +131,5 @@ func main() {
 		os.Exit(1)
 	}
 
-	_, _ = fmt.Fprintf(os.Stdout, "%d emails of %d bytes sent successfully in %d \n", len(recipients), len(htmlTemplate), time.Since(start))
+	_, _ = fmt.Fprintf(os.Stdout, "%d emails of %d bytes sent successfully in %d Milliseconds\n", len(recipients), len(htmlTemplate), time.Since(start).Milliseconds())
 }
