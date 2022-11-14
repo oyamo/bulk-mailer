@@ -118,7 +118,7 @@ func main() {
 
 	// Create mailer
 	mailer := NewMailer(os.Getenv("EMAIL"), os.Getenv("PASSWORD"), "smtp.gmail.com")
-
+	fmt.Println(recipients)
 	// Send emails
 	err = mailer.SendMail(recipients, subject, htmlTemplate)
 	if err != nil {
