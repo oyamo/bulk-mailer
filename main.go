@@ -62,6 +62,8 @@ func main() {
 		htmlTemplate = strings.Join([]string{htmlTemplate, scanner.Text()}, "")
 	}
 
+	fmt.Println(htmlTemplate)
+
 	// Read environment file
 	err = godotenv.Load(envFile)
 	if err != nil {
