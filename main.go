@@ -25,7 +25,7 @@ func main() {
 	var envFile string
 	var subject string
 	var emailColumn int = -1
-	var nameColumd int = -1
+	var nameColumn int = -1
 	var recipients []Recipient
 	var htmlTemplate string
 
@@ -88,9 +88,9 @@ func main() {
 	}
 
 	if strings.Contains(strings.ToLower(emails[0][0]), "name") {
-		nameColumd = 0
+		nameColumn = 0
 	} else if strings.Contains(strings.ToLower(emails[1][0]), "name") {
-		nameColumd = 1
+		nameColumn = 1
 	}
 
 	if emailColumn == -1 {
@@ -98,8 +98,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	if nameColumd == -1 {
+	if nameColumn == -1 {
 		_, _ = fmt.Fprintf(os.Stderr, "Error: (email file) Must contain a column with the word 'name' in it")
+		fmt.Println(emails)
 		os.Exit(1)
 	}
 
@@ -109,7 +110,7 @@ func main() {
 			continue
 		}
 		recipients = append(recipients, Recipient{
-			Name:  emails[nameColumd][index],
+			Name:  emails[nameColumn][index],
 			Email: emails[emailColumn][index],
 		})
 	}
