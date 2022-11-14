@@ -82,7 +82,7 @@ func main() {
 
 	// Test if first column contains email addresses
 	// Loop from fileRder[0][:4] to test only first 4 rows
-	for _, email := range emails[0][:4] {
+	for _, email := range emails[0] {
 		if strings.Contains(email, "@") {
 			emailColumn = 0
 			nameColumd = 1
@@ -92,7 +92,7 @@ func main() {
 
 	// Test if second column contains email addresses
 	// Loop from fileRder[1][:4] to test only first 4 rows
-	for _, email := range emails[1][:4] {
+	for _, email := range emails[1] {
 		if strings.Contains(email, "@") {
 			emailColumn = 1
 			nameColumd = 0
