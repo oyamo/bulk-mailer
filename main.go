@@ -8,6 +8,7 @@ import (
 	"github.com/joho/godotenv"
 	"os"
 	"strings"
+	"time"
 )
 
 type Recipient struct {
@@ -118,7 +119,9 @@ func main() {
 
 	// Create mailer
 	mailer := NewMailer(os.Getenv("EMAIL"), os.Getenv("PASSWORD"), "smtp.gmail.com")
-	fmt.Println(recipients)
+
+	start := time.Now()
+
 	// Send emails
 	err = mailer.SendMail(recipients, subject, htmlTemplate)
 	if err != nil {
@@ -126,5 +129,5 @@ func main() {
 		os.Exit(1)
 	}
 
-	_, _ = fmt.Fprintf(os.Stdout, "Emails sent successfully \n")
+	_, _ = fmt.Fprintf(os.Stdout, "%d emails of %d bytes sent successfully in %d \n", len(recipients), len(htmlTemplate), time.Since(start))
 }
