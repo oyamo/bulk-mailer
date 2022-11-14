@@ -80,16 +80,21 @@ func main() {
 		os.Exit(1)
 	}
 
+	if len(emails[0]) != 2 {
+		_, _ = fmt.Fprintf(os.Stderr, "Error: (email file) Must contain 2 columns \n")
+		os.Exit(1)
+	}
+
 	// Column
 	if strings.Contains(strings.ToLower(emails[0][0]), "email") {
 		emailColumn = 0
-	} else if strings.Contains(strings.ToLower(emails[1][0]), "email") {
+	} else if strings.Contains(strings.ToLower(emails[0][1]), "email") {
 		emailColumn = 1
 	}
 
 	if strings.Contains(strings.ToLower(emails[0][0]), "name") {
 		nameColumn = 0
-	} else if strings.Contains(strings.ToLower(emails[1][0]), "name") {
+	} else if strings.Contains(strings.ToLower(emails[0][1]), "name") {
 		nameColumn = 1
 	}
 
@@ -100,18 +105,17 @@ func main() {
 
 	if nameColumn == -1 {
 		_, _ = fmt.Fprintf(os.Stderr, "Error: (email file) Must contain a column with the word 'name' in it\n")
-		fmt.Println(emails)
 		os.Exit(1)
 	}
 
 	// Create recipients
-	for index, _ := range emails[0] {
+	for index, _ := range emails[1:] {
 		if index == 0 {
 			continue
 		}
 		recipients = append(recipients, Recipient{
-			Name:  emails[nameColumn][index],
-			Email: emails[emailColumn][index],
+			Name:  emails[index][nameColumn],
+			Email: emails[index][emailColumn],
 		})
 	}
 
