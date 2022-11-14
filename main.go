@@ -24,8 +24,8 @@ func main() {
 	var htmlFile string
 	var envFile string
 	var subject string
-	var emailColumn int
-	var nameColumd int
+	var emailColumn int = -1
+	var nameColumd int = -1
 	var recipients []Recipient
 	var htmlTemplate string
 
@@ -80,24 +80,17 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Test if first column contains email addresses
-	// Loop from fileRder[0][:4] to test only first 4 rows
-	for _, email := range emails[0] {
-		if strings.Contains(email, "@") {
-			emailColumn = 0
-			nameColumd = 1
-			break
-		}
+	// Column
+	if strings.Contains(strings.ToLower(emails[0][0]), "email") {
+		emailColumn = 0
+	} else if strings.Contains(strings.ToLower(emails[1][0]), "email") {
+		emailColumn = 1
 	}
 
-	// Test if second column contains email addresses
-	// Loop from fileRder[1][:4] to test only first 4 rows
-	for _, email := range emails[1] {
-		if strings.Contains(email, "@") {
-			emailColumn = 1
-			nameColumd = 0
-			break
-		}
+	if strings.Contains(strings.ToLower(emails[0][0]), "name") {
+		nameColumd = 0
+	} else if strings.Contains(strings.ToLower(emails[1][0]), "name") {
+		nameColumd = 1
 	}
 
 	// Create recipients
