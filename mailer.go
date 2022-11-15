@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	mail "github.com/xhit/go-simple-mail/v2"
 )
 
@@ -36,8 +37,16 @@ func (m *Mailer) SendMail(to []Recipient, subject, body string) error {
 	email.SetFrom(m.Email)
 	email.SetSubject(subject)
 
-	for _, v := range to {
-		email.AddTo(v.Email)
+	if len(to) == 0 {
+		return errors.New("no recipients")
+	}
+
+	email.AddTo(to[0].String())
+
+	if len(to) > 1 {
+		for _, recipient := range to[1:] {
+			email.AddBcc(recipient.String())
+		}
 	}
 	// TODO: ADD Template support
 
