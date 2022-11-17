@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	mail "github.com/xhit/go-simple-mail/v2"
 )
 
@@ -36,7 +37,7 @@ func (m *Mailer) SendMail(to []Recipient, subject, body string) error {
 	}
 
 	email := mail.NewMSG()
-	email.SetFrom(m.Email)
+	email.SetFrom(fmt.Sprintf("%s <%s>", m.Name, m.Email))
 	email.SetSubject(subject)
 
 	if len(to) == 0 {
