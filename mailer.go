@@ -8,13 +8,15 @@ import (
 type Mailer struct {
 	Email    string
 	Password string
+	Name     string
 	Host     string
 }
 
-func NewMailer(email, password, host string) *Mailer {
+func NewMailer(email, password, host, name string) *Mailer {
 	return &Mailer{
 		Email:    email,
 		Password: password,
+		Name:     name,
 		Host:     host,
 	}
 }

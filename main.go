@@ -118,7 +118,7 @@ func main() {
 	fmt.Println("[bulk-mailer@v1.0.0] https://github.com/oyamo/bulk-mailer")
 
 	// Create mailer
-	mailer := NewMailer(os.Getenv("EMAIL"), os.Getenv("PASSWORD"), "smtp.gmail.com")
+	mailer := NewMailer(os.Getenv("EMAIL"), os.Getenv("PASSWORD"), "smtp.gmail.com", os.Getenv("NAME"))
 
 	start := time.Now()
 
